@@ -2,10 +2,14 @@
   "name": "Keyfall",
   "packageManager": "yarn@3.6.1",
   "dependencies": {
-    "esbuild": "^0.19.0"
+    "@react-three/fiber": "^8.13.6",
+    "esbuild": "^0.19.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.155.0"
   },
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist",
-    "watch": "esbuild src/main.ts --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist --watch"
+    "build": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist",
+    "watch": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist --watch"
   }
 }
