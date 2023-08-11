@@ -9,7 +9,7 @@
     "three": "^0.155.0"
   },
   "scripts": {
-    "build": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist",
-    "watch": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist --watch"
+    "build": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge18 --outdir=dist",
+    "watch": "esbuild src/main.tsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge18 --outdir=dist --watch"
   }
 }
