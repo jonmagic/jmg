@@ -3,5 +3,9 @@
   "packageManager": "yarn@3.6.1",
   "dependencies": {
     "esbuild": "^0.19.0"
+  },
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist",
+    "watch": "esbuild src/main.ts --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=dist --watch"
   }
 }
