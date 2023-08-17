@@ -1,5 +1,5 @@
 {
-  "name": "Keyfall",
+  "name": "keyfall",
   "packageManager": "yarn@3.6.1",
   "dependencies": {
     "@react-three/drei": "^9.80.2",
