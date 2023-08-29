@@ -12,17 +12,21 @@ function Keyfall() {
     setGame(<Game />)
   }
 
-  if (game) {
-    return (
-      <>
-        <button onClick={endGame}>End Game</button>
-        {game}
-      </>
-    )
-  }
-
   return (
-    <button onClick={startGame}>Start Game</button>
+    <>
+      <button
+        onClick={!game ? startGame : endGame}
+        style={{
+          position: 'absolute',
+          top: 5,
+          left: 5,
+          fontSize: '1em',
+        }}
+      >
+        {!game ? "Start Game" : "End Game"}
+      </button>
+      {game}
+    </>
   )
 }
 
