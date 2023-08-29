@@ -9,11 +9,16 @@ function Keyfall() {
   }
 
   const startGame = () => {
-    setGame(<Game endGame={endGame} />)
+    setGame(<Game />)
   }
 
   if (game) {
-    return game
+    return (
+      <>
+        <button onClick={endGame}>End Game</button>
+        {game}
+      </>
+    )
   }
 
   return (
