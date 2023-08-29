@@ -1,19 +1,44 @@
 import { Canvas } from '@react-three/fiber'
 import { useEffect, useState } from 'react'
-import Key from './key.tsx'
+import Level from './level.tsx'
 
-// const lowercase = 'abcdefghijklmnopqrstuvwxyz'.split('')
-// const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
-// const numbers = '0123456789'.split('')
-// const all = [...lowercase, ...uppercase, ...numbers]
+export interface KeyState {
+  character: string
+  position: {
+    x: number
+    y: number
+  }
+  speed: number
+  color: string
+  size: number
+  uuid: string
+}
 
 function Game() {
-  const [character, setCharacter] = useState<null | string>(null)
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  })
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize({
+        innerWidth: window.innerWidth * 2,
+        innerHeight: window.innerHeight * 2,
+      });
+    };
 
+    window.addEventListener('resize', handleWindowResize)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  })
+
+  const [keys, setKeys] = useState<Array<KeyState>>([])
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
       const { key } = event
-      setCharacter(key)
+      setKeys((keys) => keys.filter((k) => k.character !== key))
     })
 
     return () => {
@@ -22,8 +47,8 @@ function Game() {
   })
 
   return (
-    <Canvas>
-      {character && <Key character={character} />}
+    <Canvas style={{ width: windowSize.innerWidth, height: windowSize.innerHeight }}>
+      <Level keys={keys} setKeys={setKeys} windowSize={windowSize} />
     </Canvas>
   )
 }

@@ -1,11 +1,36 @@
 import { Text } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { useMemo, useRef } from 'react'
+import { AdditiveBlending } from 'three'
+import { KeyState } from './game'
 
-interface KeyProps {
-  character: string
-}
+const Material = () =>
+  useMemo(
+    () => (
+      <meshStandardMaterial
+        color="#000000"
+        blending={AdditiveBlending}
+      />
+    ),
+    []
+  )
 
-function Key({ character }: KeyProps) {
+interface KeycapProps extends KeyState {}
+
+function Keycap({ character, position, speed }: KeycapProps) {
+  const keycap = useRef(null)
+
+  useFrame(({ clock }) => {
+    const timer = clock.getElapsedTime()
+
+    if (keycap.current) {
+      const current = keycap.current as { position: { y: number } }
+      current.position.y = position.y - speed * timer * 0.05
+    }
+  })
+
   return <Text
+    ref={keycap}
     fontSize={1}
     font="helvetiker_regular.typeface.json"
     key={undefined}
@@ -88,7 +113,8 @@ function Key({ character }: KeyProps) {
     getVertexPosition={undefined}
   >
     {character}
+    <Material />
   </Text>
 }
 
-export default Key
+export default Keycap
